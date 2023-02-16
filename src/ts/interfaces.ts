@@ -3,7 +3,8 @@ import { IncomingHttpHeaders } from "http";
 import { StatusCodes } from "http-status-codes";
 import Joi from "joi";
 
-import { TAnyObject, TEmptyObject, TModify } from "./types.js";
+import { Contract } from "../entities/index.js";
+import { TAnyObject, TContractRepository, TEmptyObject, TModify } from "./types.js";
 
 interface IConfig {
     APP: {
@@ -66,14 +67,16 @@ interface IGetContractRequest extends TModify<IHttpRequest, {
 
 interface IGetContractResponse extends TModify<IHttpResponse, {
     data: {
-        ok: true;
+        contract: Contract;
     };
 }> { }
 
-// interface IBuildGetContract {
-// }
+interface IBuildGetContract {
+    contractRepository: TContractRepository;
+}
 
 export {
+    IBuildGetContract,
     IConfig,
     IDatabase,
     IGetContractRequest,

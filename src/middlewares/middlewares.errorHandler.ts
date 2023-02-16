@@ -1,6 +1,5 @@
 import Boom from "@hapi/boom";
 import { NextFunction, Request, Response } from "express";
-import { StatusCodes } from "http-status-codes";
 
 import { logger } from "../app/index.js";
 
@@ -16,7 +15,6 @@ function errorHandler(error: Error | Boom.Boom, _req: Request, res: Response, ne
     if (Boom.isBoom(error)) {
         logger.error("HANDLING_ERROR", {
             data: {
-                boomified: false,
                 error,
             },
         });
@@ -24,15 +22,16 @@ function errorHandler(error: Error | Boom.Boom, _req: Request, res: Response, ne
         return res.status(error.output.statusCode).json(error);
     }
 
-    const boomError = Boom.boomify(error, {
-        statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-        message: "Unexpected error",
+    const boomError = Boom.badImplementation("UNEXPECTED_ERROR", {
+        error: {
+            message: error.message,
+            stack: error.stack,
+        },
     });
 
-    logger.error("HANDLING_ERROR", {
+    logger.error("HANDLING_UNEXPECTED_ERROR", {
         data: {
-            boomified: true,
-            error,
+            error: boomError,
         },
     });
 

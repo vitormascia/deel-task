@@ -6,8 +6,8 @@
   "main": "./build/app/entry-points/app.entry-points.apiBoot.ts",
   "private": true,
   "scripts": {
-    "start": "ts-node ./src/app/entry-points/app.entry-points.apiBoot.ts",
     "seed": "ts-node ./scripts/seedDb.ts",
+    "start": "ts-node ./src/app/entry-points/app.entry-points.apiBoot.ts",
     "api:boot:ts": "ts-node ./src/app/entry-points/app.entry-points.apiBoot.ts",
     "api:boot:js": "node ./build/app/entry-points/app.entry-points.apiBoot.js",
     "api:boot-watch:ts": "nodemon --watch ./src/**/*.ts --exec ts-node ./src/app/entry-points/app.entry-points.apiBoot.ts",

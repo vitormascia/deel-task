@@ -1,18 +1,19 @@
+import Boom from "@hapi/boom";
 import { StatusCodes } from "http-status-codes";
 
-import { IGetContractResponse } from "../../ts/index.js";
+import { IBuildGetContract, IGetContractResponse } from "../../ts/index.js";
 
-function buildGetContract() {
-    // eslint-disable-next-line @typescript-eslint/require-await
-    return async function getContract(_id: string): Promise<IGetContractResponse> {
-        // const { Contract } = req.app.get("models");
-        // const { id } = req.params;
-        // const contract = await Contract.findOne({ where: { id } });
-        // if (!contract) return res.status(404).end();
-        // res.json(contract);
+function buildGetContract({
+    contractRepository,
+}: IBuildGetContract) {
+    return async function getContract(id: string): Promise<IGetContractResponse> {
+        const contract = await contractRepository.findByPk(id);
+
+        if (!contract) throw Boom.notFound("MISSING_CONTRACT");
+
         return {
             statusCode: StatusCodes.OK,
-            data: { ok: true },
+            data: { contract },
         };
     };
 }
