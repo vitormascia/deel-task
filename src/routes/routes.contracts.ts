@@ -9,6 +9,6 @@ const { id } = pathParams;
 const contractsRoutes = express
     .Router()
     .get("", getProfile(), buildCallback(contractsController.getContracts))
-    .get(`/${id}`, bouncer(getContractSchema), getProfile(), buildCallback(contractsController.getContract));
+    .get(`/${id}`, getProfile(), bouncer(getContractSchema), buildCallback(contractsController.getContract));
 
 export default contractsRoutes;

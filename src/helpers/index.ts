@@ -1,4 +1,4 @@
 import pathParams from "./helpers.pathParams.js";
-import { depositMoneySchema, getContractSchema, payJobSchema } from "./joi/index.js";
+import { depositMoneySchema, getBestProfessionSchema, getContractSchema, payJobSchema } from "./joi/index.js";
 
-export { depositMoneySchema, getContractSchema, pathParams, payJobSchema };
+export { depositMoneySchema, getBestProfessionSchema, getContractSchema, pathParams, payJobSchema };

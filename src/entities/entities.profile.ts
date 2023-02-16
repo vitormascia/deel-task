@@ -12,6 +12,12 @@ class Profile extends Model<InferAttributes<Profile>, InferCreationAttributes<Pr
     declare balance: number;
     declare type: ProfileType;
     declare Client: NonAttribute<Contract[]>;
+    declare createdAt: CreationOptional<Date>;
+    declare updatedAt: CreationOptional<Date>;
+
+    get fullName(): NonAttribute<string> {
+        return `${this.firstName} ${this.lastName}`;
+    }
 }
 
 Profile.init(
@@ -39,6 +45,8 @@ Profile.init(
         type: {
             type: new DataTypes.ENUM(...Object.values(ProfileType)),
         },
+        createdAt: DataTypes.DATE,
+        updatedAt: DataTypes.DATE,
     },
     {
         sequelize: db,

@@ -1,3 +1,3 @@
-import { depositMoneySchema, getContractSchema, payJobSchema } from "./schemas/index.js";
+import { depositMoneySchema, getBestProfessionSchema, getContractSchema, payJobSchema } from "./schemas/index.js";
 
-export { depositMoneySchema, getContractSchema, payJobSchema };
+export { depositMoneySchema, getBestProfessionSchema, getContractSchema, payJobSchema };

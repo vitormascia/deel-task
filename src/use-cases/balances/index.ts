@@ -1,6 +1,6 @@
 import { db } from "../../app/databases/index.js";
 import { Contract, Job, Profile } from "../../entities/index.js";
-import buildDepositMoney from "./use-cases.jobs.depositMoney.js";
+import buildDepositMoney from "./use-cases.balances.depositMoney.js";
 
 const depositMoney = buildDepositMoney({
     profileRepository: Profile,

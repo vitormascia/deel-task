@@ -7,7 +7,7 @@ import { IBuildGetContract, IGetContractResponse } from "../../ts/index.js";
 function buildGetContract({
     contractRepository,
 }: IBuildGetContract) {
-    return async function getContract(contractId: string, profileId: string): Promise<IGetContractResponse> {
+    return async function getContract(profileId: string, contractId: string): Promise<IGetContractResponse> {
         const contract = await contractRepository.findOne({
             where: {
                 id: contractId,

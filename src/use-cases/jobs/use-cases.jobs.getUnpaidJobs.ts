@@ -8,7 +8,7 @@ function buildGetUnpaidJobs({
     contractRepository,
 }: IBuildGetUnpaidJobs) {
     return async function getUnpaidJobs(profileId: string): Promise<IGetUnpaidJobsResponse> {
-        const contractsIfUnpaidJobs = await contractRepository.findAll({
+        const contractsWithUnpaidJobs = await contractRepository.findAll({
             where: {
                 status: ContractStatus.IN_PROGRESS,
                 [Op.or]: [
@@ -24,7 +24,7 @@ function buildGetUnpaidJobs({
             },
         });
 
-        const jobs = contractsIfUnpaidJobs.map((contract) => {
+        const jobs = contractsWithUnpaidJobs.map((contract) => {
             return contract.Jobs;
         }).flat();
 

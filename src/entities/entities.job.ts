@@ -11,6 +11,8 @@ class Job extends Model<InferAttributes<Job>, InferCreationAttributes<Job>> {
     declare paymentDate: CreationOptional<string>;
     declare ContractId: ForeignKey<Contract["id"]>;
     declare Contract?: NonAttribute<Contract>;
+    declare createdAt: CreationOptional<Date>;
+    declare updatedAt: CreationOptional<Date>;
 }
 
 Job.init(
@@ -35,6 +37,8 @@ Job.init(
         paymentDate: {
             type: DataTypes.DATE,
         },
+        createdAt: DataTypes.DATE,
+        updatedAt: DataTypes.DATE,
     },
     {
         sequelize: db,

@@ -77,6 +77,7 @@ interface IGetContractRequestPath {
 }
 
 interface IGetContractRequest extends TModify<IHttpRequest, {
+    body: TEmptyObject;
     path: IGetContractRequestPath;
 }> { }
 
@@ -136,8 +137,8 @@ interface IDepositMoneyRequestBody {
 }
 
 interface IDepositMoneyRequest extends TModify<IHttpRequest, {
-    path: IDepositMoneyRequestPath;
     body: IDepositMoneyRequestBody;
+    path: IDepositMoneyRequestPath;
 }> { }
 
 interface IDepositMoneyResponse extends TModify<IHttpResponse, {
@@ -155,8 +156,23 @@ interface IBuildDepositMoney {
     db: Sequelize;
 }
 
+interface IGetBestProfessionRequest extends TModify<IHttpRequest, {
+    body: TEmptyObject;
+}> { }
+
+interface IGetBestProfessionResponse extends TModify<IHttpResponse, {
+    data: TAnyObject;
+}> { }
+
+interface IBuildGetBestProfession {
+    profileRepository: TProfileRepository;
+    jobRepository: TJobRepository;
+    contractRepository: TContractRepository;
+}
+
 export {
     IBuildDepositMoney,
+    IBuildGetBestProfession,
     IBuildGetContract,
     IBuildGetContracts,
     IBuildGetUnpaidJobs,
@@ -165,6 +181,8 @@ export {
     IDatabase,
     IDepositMoneyRequest,
     IDepositMoneyResponse,
+    IGetBestProfessionRequest,
+    IGetBestProfessionResponse,
     IGetContractRequest,
     IGetContractResponse,
     IGetContractsRequest,

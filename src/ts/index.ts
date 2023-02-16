@@ -1,10 +1,11 @@
 import { ContractStatus, LogLevelColors, ProfileType } from "./enums.js";
-import { IBuildDepositMoney, IBuildGetContract, IBuildGetContracts, IBuildGetUnpaidJobs, IBuildPayJob, IConfig, IDatabase, IDepositMoneyRequest, IDepositMoneyResponse, IGetContractRequest, IGetContractResponse, IGetContractsRequest, IGetContractsResponse, IGetUnpaidJobsRequest, IGetUnpaidJobsResponse, IHttpRequest, IHttpResponse, IJoiBaseSchema, ILogger, IPayJobRequest, IPayJobResponse, IRequestParams } from "./interfaces.js";
+import { IBuildDepositMoney, IBuildGetBestProfession, IBuildGetContract, IBuildGetContracts, IBuildGetUnpaidJobs, IBuildPayJob, IConfig, IDatabase, IDepositMoneyRequest, IDepositMoneyResponse, IGetBestProfessionRequest, IGetBestProfessionResponse, IGetContractRequest, IGetContractResponse, IGetContractsRequest, IGetContractsResponse, IGetUnpaidJobsRequest, IGetUnpaidJobsResponse, IHttpRequest, IHttpResponse, IJoiBaseSchema, ILogger, IPayJobRequest, IPayJobResponse, IRequestParams } from "./interfaces.js";
 import { TAnyObject, TBouncer, TBuildCallback, TContractRepository, TController, TEmptyObject, TGetProfile, TJobRepository, TModify, TProfileRepository, TWinstonLogger } from "./types.js";
 
 export {
     ContractStatus,
     IBuildDepositMoney,
+    IBuildGetBestProfession,
     IBuildGetContract,
     IBuildGetContracts,
     IBuildGetUnpaidJobs,
@@ -13,6 +14,8 @@ export {
     IDatabase,
     IDepositMoneyRequest,
     IDepositMoneyResponse,
+    IGetBestProfessionRequest,
+    IGetBestProfessionResponse,
     IGetContractRequest,
     IGetContractResponse,
     IGetContractsRequest,

@@ -13,6 +13,8 @@ class Contract extends Model<InferAttributes<Contract>, InferCreationAttributes<
     declare ClientId: ForeignKey<Profile["id"]>;
     declare Jobs: NonAttribute<Job[]>;
     declare Contractor: NonAttribute<Profile>;
+    declare createdAt: CreationOptional<Date>;
+    declare updatedAt: CreationOptional<Date>;
 }
 
 Contract.init(
@@ -29,6 +31,8 @@ Contract.init(
         status: {
             type: new DataTypes.ENUM(...Object.values(ContractStatus)),
         },
+        createdAt: DataTypes.DATE,
+        updatedAt: DataTypes.DATE,
     },
     {
         sequelize: db,

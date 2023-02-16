@@ -51,6 +51,10 @@ function buildPayJob({
 
             await contract.Contractor.increment("balance", { by: jobPrice, transaction: t });
 
+            // Considering the given mocks, just because a Contract is
+            // TERMINATED, it doesn't mean all the Jobs are paid
+            //
+            // TODO: Check if every other Job on this Contract is also paid before updating to TERMINATED
             await contract.update({
                 status: ContractStatus.TERMINATED,
             }, { transaction: t });

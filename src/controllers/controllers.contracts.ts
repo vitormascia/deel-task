@@ -11,6 +11,6 @@ export default Object.freeze({
         const profileId = httpRequest.headers.profile_id as string;
         const { id: contractId } = httpRequest.path;
 
-        return contractsService.getContract(contractId, profileId);
+        return contractsService.getContract(profileId, contractId);
     },
 });
