@@ -1,4 +1,4 @@
-import { CreationOptional, DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model } from "sequelize";
+import { CreationOptional, DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model, NonAttribute } from "sequelize";
 
 import { db } from "../app/databases/index.js";
 import Contract from "./entities.contract.js";
@@ -10,6 +10,7 @@ class Job extends Model<InferAttributes<Job>, InferCreationAttributes<Job>> {
     declare paid: CreationOptional<boolean>;
     declare paymentDate: CreationOptional<string>;
     declare ContractId: ForeignKey<Contract["id"]>;
+    declare Contract?: NonAttribute<Contract>;
 }
 
 Job.init(

@@ -2,9 +2,10 @@ import { ParamsDictionary, Query } from "express-serve-static-core";
 import { IncomingHttpHeaders } from "http";
 import { StatusCodes } from "http-status-codes";
 import Joi from "joi";
+import { Sequelize } from "sequelize";
 
-import { Contract, Job } from "../entities/index.js";
-import { TAnyObject, TContractRepository, TEmptyObject, TModify } from "./types.js";
+import { Contract, Job, Profile } from "../entities/index.js";
+import { TAnyObject, TContractRepository, TEmptyObject, TJobRepository, TModify, TProfileRepository } from "./types.js";
 
 interface IConfig {
     APP: {
@@ -101,10 +102,36 @@ interface IBuildGetUnpaidJobs {
     contractRepository: TContractRepository;
 }
 
+interface IPayJobRequestPath {
+    [job_ib: string]: string;
+}
+
+interface IPayJobRequest extends TModify<IHttpRequest, {
+    path: IPayJobRequestPath;
+    body: TEmptyObject;
+}> { }
+
+interface IPayJobResponse extends TModify<IHttpResponse, {
+    data: {
+        client: Profile,
+        contractor: Profile,
+        contract: Contract,
+        job: Job,
+    };
+}> { }
+
+interface IBuildPayJob {
+    profileRepository: TProfileRepository;
+    jobRepository: TJobRepository;
+    contractRepository: TContractRepository;
+    db: Sequelize;
+}
+
 export {
     IBuildGetContract,
     IBuildGetContracts,
     IBuildGetUnpaidJobs,
+    IBuildPayJob,
     IConfig,
     IDatabase,
     IGetContractRequest,
@@ -117,5 +144,7 @@ export {
     IHttpResponse,
     IJoiBaseSchema,
     ILogger,
+    IPayJobRequest,
+    IPayJobResponse,
     IRequestParams,
 };

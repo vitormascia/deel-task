@@ -1,12 +1,14 @@
 import { NextFunction, Request, Response } from "express";
 import winston from "winston";
 
-import { Contract } from "../entities/index.js";
+import { Contract, Job, Profile } from "../entities/index.js";
 import { IHttpRequest, IHttpResponse } from "./interfaces.js";
 
 type TWinstonLogger = typeof winston;
 
 type TContractRepository = typeof Contract;
+type TProfileRepository = typeof Profile;
+type TJobRepository = typeof Job;
 
 type TAnyObject = object;
 type TEmptyObject = Record<string, never>;
@@ -17,4 +19,4 @@ type TGetProfile = (req: Request, _res: Response, next: NextFunction) => Promise
 type TController = (httpRequest: IHttpRequest) => Promise<IHttpResponse> | IHttpResponse;
 type TBuildCallback = (req: Request, res: Response, next: NextFunction) => Promise<void>;
 
-export { TAnyObject, TBouncer, TBuildCallback, TContractRepository, TController, TEmptyObject, TGetProfile, TModify, TWinstonLogger };
+export { TAnyObject, TBouncer, TBuildCallback, TContractRepository, TController, TEmptyObject, TGetProfile, TJobRepository, TModify, TProfileRepository, TWinstonLogger };

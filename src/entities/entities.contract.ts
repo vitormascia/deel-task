@@ -1,4 +1,4 @@
-import { CreationOptional, DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model } from "sequelize";
+import { CreationOptional, DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model, NonAttribute } from "sequelize";
 
 import { db } from "../app/databases/index.js";
 import { ContractStatus } from "../ts/index.js";
@@ -11,7 +11,8 @@ class Contract extends Model<InferAttributes<Contract>, InferCreationAttributes<
     declare status: ContractStatus;
     declare ContractorId: ForeignKey<Profile["id"]>;
     declare ClientId: ForeignKey<Profile["id"]>;
-    declare Jobs: CreationOptional<ForeignKey<Job[]>>;
+    declare Jobs: NonAttribute<Job[]>;
+    declare Contractor: NonAttribute<Profile>;
 }
 
 Contract.init(
