@@ -1,10 +1,16 @@
-import { IGetContractRequest, IGetContractResponse } from "../ts/index.js";
+import { IGetContractRequest, IGetContractResponse, IGetContractsRequest, IGetContractsResponse } from "../ts/index.js";
 import { contractsService } from "../use-cases/index.js";
 
 export default Object.freeze({
-    getContract: (httpRequest: IGetContractRequest): Promise<IGetContractResponse> => {
-        const { id } = httpRequest.path;
+    getContracts: (httpRequest: IGetContractsRequest): Promise<IGetContractsResponse> => {
+        const profileId = httpRequest.headers.profile_id as string;
 
-        return contractsService.getContract(id);
+        return contractsService.getContracts(profileId);
+    },
+    getContract: (httpRequest: IGetContractRequest): Promise<IGetContractResponse> => {
+        const profileId = httpRequest.headers.profile_id as string;
+        const { id: contractId } = httpRequest.path;
+
+        return contractsService.getContract(contractId, profileId);
     },
 });
