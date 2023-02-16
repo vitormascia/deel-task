@@ -1,4 +1,5 @@
+import balancesController from "./controllers.balances.js";
 import contractsController from "./controllers.contracts.js";
 import jobsController from "./controllers.jobs.js";
 
-export { contractsController, jobsController };
+export { balancesController, contractsController, jobsController };

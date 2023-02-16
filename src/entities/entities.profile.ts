@@ -1,7 +1,8 @@
-import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from "sequelize";
+import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model, NonAttribute } from "sequelize";
 
 import { db } from "../app/databases/index.js";
 import { ProfileType } from "../ts/index.js";
+import Contract from "./entities.contract.js";
 
 class Profile extends Model<InferAttributes<Profile>, InferCreationAttributes<Profile>> {
     declare id: CreationOptional<number>;
@@ -10,6 +11,7 @@ class Profile extends Model<InferAttributes<Profile>, InferCreationAttributes<Pr
     declare profession: string;
     declare balance: number;
     declare type: ProfileType;
+    declare Client: NonAttribute<Contract[]>;
 }
 
 Profile.init(

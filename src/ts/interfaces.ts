@@ -107,8 +107,8 @@ interface IPayJobRequestPath {
 }
 
 interface IPayJobRequest extends TModify<IHttpRequest, {
-    path: IPayJobRequestPath;
     body: TEmptyObject;
+    path: IPayJobRequestPath;
 }> { }
 
 interface IPayJobResponse extends TModify<IHttpResponse, {
@@ -127,13 +127,44 @@ interface IBuildPayJob {
     db: Sequelize;
 }
 
+interface IDepositMoneyRequestPath {
+    [userId: string]: string;
+}
+
+interface IDepositMoneyRequestBody {
+    deposit: number;
+}
+
+interface IDepositMoneyRequest extends TModify<IHttpRequest, {
+    path: IDepositMoneyRequestPath;
+    body: IDepositMoneyRequestBody;
+}> { }
+
+interface IDepositMoneyResponse extends TModify<IHttpResponse, {
+    data: {
+        clientDepositor: Profile;
+        clientReceiver: Profile;
+        deposit: number;
+    };
+}> { }
+
+interface IBuildDepositMoney {
+    profileRepository: TProfileRepository;
+    jobRepository: TJobRepository;
+    contractRepository: TContractRepository;
+    db: Sequelize;
+}
+
 export {
+    IBuildDepositMoney,
     IBuildGetContract,
     IBuildGetContracts,
     IBuildGetUnpaidJobs,
     IBuildPayJob,
     IConfig,
     IDatabase,
+    IDepositMoneyRequest,
+    IDepositMoneyResponse,
     IGetContractRequest,
     IGetContractResponse,
     IGetContractsRequest,
