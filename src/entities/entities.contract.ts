@@ -2,6 +2,7 @@ import { CreationOptional, DataTypes, ForeignKey, InferAttributes, InferCreation
 
 import { db } from "../app/databases/index.js";
 import { ContractStatus } from "../ts/index.js";
+import Job from "./entities.job.js";
 import Profile from "./entities.profile.js";
 
 class Contract extends Model<InferAttributes<Contract>, InferCreationAttributes<Contract>> {
@@ -10,6 +11,7 @@ class Contract extends Model<InferAttributes<Contract>, InferCreationAttributes<
     declare status: ContractStatus;
     declare ContractorId: ForeignKey<Profile["id"]>;
     declare ClientId: ForeignKey<Profile["id"]>;
+    declare Jobs: CreationOptional<ForeignKey<Job[]>>;
 }
 
 Contract.init(

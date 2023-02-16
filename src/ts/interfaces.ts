@@ -3,8 +3,7 @@ import { IncomingHttpHeaders } from "http";
 import { StatusCodes } from "http-status-codes";
 import Joi from "joi";
 
-// import { Contract, Profile } from "../entities/index.js";
-import { Contract } from "../entities/index.js";
+import { Contract, Job } from "../entities/index.js";
 import { TAnyObject, TContractRepository, TEmptyObject, TModify } from "./types.js";
 
 interface IConfig {
@@ -40,7 +39,6 @@ interface IRequestParams {
 }
 
 interface IHttpRequest extends IRequestParams {
-    // profile: Profile;
     method: string;
     url: {
         protocol: string;
@@ -91,15 +89,30 @@ interface IBuildGetContract {
     contractRepository: TContractRepository;
 }
 
+interface IGetUnpaidJobsRequest extends TModify<IHttpRequest, {
+    body: TEmptyObject;
+}> { }
+
+interface IGetUnpaidJobsResponse extends TModify<IHttpResponse, {
+    data: Job[];
+}> { }
+
+interface IBuildGetUnpaidJobs {
+    contractRepository: TContractRepository;
+}
+
 export {
     IBuildGetContract,
     IBuildGetContracts,
+    IBuildGetUnpaidJobs,
     IConfig,
     IDatabase,
     IGetContractRequest,
     IGetContractResponse,
     IGetContractsRequest,
     IGetContractsResponse,
+    IGetUnpaidJobsRequest,
+    IGetUnpaidJobsResponse,
     IHttpRequest,
     IHttpResponse,
     IJoiBaseSchema,
