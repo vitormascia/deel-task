@@ -1,4 +1,4 @@
-import adminsService, { getBestProfession } from "./admins/index.js";
+import adminsService, { getBestClients, getBestProfession } from "./admins/index.js";
 import balancesService, { depositMoney } from "./balances/index.js";
 import contractsService, { getContract, getContracts } from "./contracts/index.js";
 import jobsService, { getUnpaidJobs, payJob } from "./jobs/index.js";
@@ -8,6 +8,7 @@ export {
     balancesService,
     contractsService,
     depositMoney,
+    getBestClients,
     getBestProfession,
     getContract,
     getContracts,

@@ -6,7 +6,7 @@ const joiBaseSchema = generateBaseSchema();
 
 joiBaseSchema.query = Joi.object({
     start: Joi.date().iso().required(),
-    end: Joi.date().iso().required(),
+    end: Joi.date().iso().min(Joi.ref("start")).required(),
 });
 
 const getBestProfessionSchema = Joi.object(joiBaseSchema);

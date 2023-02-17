@@ -72,13 +72,8 @@ interface IBuildGetContracts {
     contractRepository: TContractRepository;
 }
 
-interface IGetContractRequestPath {
-    [id: string]: string;
-}
-
 interface IGetContractRequest extends TModify<IHttpRequest, {
     body: TEmptyObject;
-    path: IGetContractRequestPath;
 }> { }
 
 interface IGetContractResponse extends TModify<IHttpResponse, {
@@ -103,13 +98,8 @@ interface IBuildGetUnpaidJobs {
     contractRepository: TContractRepository;
 }
 
-interface IPayJobRequestPath {
-    [job_ib: string]: string;
-}
-
 interface IPayJobRequest extends TModify<IHttpRequest, {
     body: TEmptyObject;
-    path: IPayJobRequestPath;
 }> { }
 
 interface IPayJobResponse extends TModify<IHttpResponse, {
@@ -128,17 +118,12 @@ interface IBuildPayJob {
     db: Sequelize;
 }
 
-interface IDepositMoneyRequestPath {
-    [userId: string]: string;
-}
-
 interface IDepositMoneyRequestBody {
     deposit: number;
 }
 
 interface IDepositMoneyRequest extends TModify<IHttpRequest, {
     body: IDepositMoneyRequestBody;
-    path: IDepositMoneyRequestPath;
 }> { }
 
 interface IDepositMoneyResponse extends TModify<IHttpResponse, {
@@ -161,7 +146,10 @@ interface IGetBestProfessionRequest extends TModify<IHttpRequest, {
 }> { }
 
 interface IGetBestProfessionResponse extends TModify<IHttpResponse, {
-    data: TAnyObject;
+    data: {
+        name: string;
+        earns: number;
+    };
 }> { }
 
 interface IBuildGetBestProfession {
@@ -170,8 +158,23 @@ interface IBuildGetBestProfession {
     contractRepository: TContractRepository;
 }
 
+interface IGetBestClientsRequest extends TModify<IHttpRequest, {
+    body: TEmptyObject;
+}> { }
+
+interface IGetBestClientsResponse extends TModify<IHttpResponse, {
+    data: TAnyObject;
+}> { }
+
+interface IBuildGetBestClients {
+    profileRepository: TProfileRepository;
+    jobRepository: TJobRepository;
+    contractRepository: TContractRepository;
+}
+
 export {
     IBuildDepositMoney,
+    IBuildGetBestClients,
     IBuildGetBestProfession,
     IBuildGetContract,
     IBuildGetContracts,
@@ -181,6 +184,8 @@ export {
     IDatabase,
     IDepositMoneyRequest,
     IDepositMoneyResponse,
+    IGetBestClientsRequest,
+    IGetBestClientsResponse,
     IGetBestProfessionRequest,
     IGetBestProfessionResponse,
     IGetContractRequest,

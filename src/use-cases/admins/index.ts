@@ -1,4 +1,5 @@
 import { Contract, Job, Profile } from "../../entities/index.js";
+import buildGetBestClients from "./use-cases.admins.getBestClients.js";
 import buildGetBestProfession from "./use-cases.admins.getBestProfession.js";
 
 const getBestProfession = buildGetBestProfession({
@@ -7,9 +8,16 @@ const getBestProfession = buildGetBestProfession({
     contractRepository: Contract,
 });
 
+const getBestClients = buildGetBestClients({
+    profileRepository: Profile,
+    jobRepository: Job,
+    contractRepository: Contract,
+});
+
 const adminsService = Object.freeze({
     getBestProfession,
+    getBestClients,
 });
 
 export default adminsService;
-export { getBestProfession };
+export { getBestClients, getBestProfession };

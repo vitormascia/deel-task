@@ -59,7 +59,7 @@ function buildGetBestProfession({
         });
 
         const [getBestProfession] = professionsEarnsRank;
-        const [name, earns] = getBestProfession;
+        const [name, earns] = getBestProfession as [string, number];
 
         return {
             statusCode: StatusCodes.OK,
